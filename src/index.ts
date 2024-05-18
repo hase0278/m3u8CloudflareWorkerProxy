@@ -9,7 +9,8 @@ async function respondfetch(request) {
     const targetUrl = decodeURIComponent(url.searchParams.get("url") || "");
     const originUrl = decodeURIComponent(url.searchParams.get("origin") || "");
     const proxyAll = decodeURIComponent(url.searchParams.get("all") || "");
-    
+    const userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36';
+
     if (!targetUrl) {
       return new Response("Invalid URL", { status: 400 });
     }
@@ -21,6 +22,7 @@ async function respondfetch(request) {
         "Access-Control-Allow-Headers": "Content-Type",
         Referer: refererUrl || "",
         Origin: originUrl || "",
+        "User-Agent": userAgent,
       },
     });
 
